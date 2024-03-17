@@ -1,0 +1,47 @@
+.top-sellers {
+    margin-top: 20px;
+  }
+  
+  .top-sellers h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .product-slide {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;
+    gap: 20px; 
+  }
+  
+  .product-card {
+    width: calc(100% - 20px); 
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-card img {
+    width: 100%; 
+    height: auto; 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .product-card h3 {
+    margin-top: 0;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .product-card p {
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #888;
+    flex-grow: 1; 
+  }
+  

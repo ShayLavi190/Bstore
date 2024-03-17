@@ -1,0 +1,51 @@
+
+.card {
+    margin: 30px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease;
+    width: 90%; 
+    margin-left: 180px;
+  }
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  }
+  .items{
+    font-size: 20px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 18px; 
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    font-size: 16px;
+    margin-bottom: 10px; 
+  }
+  
+  ul {
+    list-style-type: none; 
+    padding: 0; 
+  }
+  
+  li {
+    margin-bottom: 5px; 
+  }
+  
+  span {
+    font-weight: bold; 
+  }
+
+  @media only screen and (max-width: 768px) 
+  {
+    .card{
+      width: 50%;
+      margin-top: 80px;
+    }
+  }

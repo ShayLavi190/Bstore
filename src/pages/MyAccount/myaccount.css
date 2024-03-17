@@ -1,0 +1,68 @@
+
+nav {
+  width: 200px; 
+  height: 100vh; 
+  background-color: rgb(87, 87, 87);
+  position: fixed;
+  margin-top: 60px;
+  top: 0;
+  left: 0;
+  overflow-y:hidden; 
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+nav ul li {
+  margin-top: 20px;
+}
+.tit
+{
+  font-size: 40px;
+}
+nav ul li a {
+  display: block;
+  color: rgb(211, 211, 211);
+  text-decoration: none;
+  font-size: 25px;
+}
+
+nav ul li a:hover {
+  color: #fffdfd;
+}
+
+.content {
+  margin-left: 140px; 
+  padding: 20px;
+}
+
+.tit h1 {
+  font-size: 8rem;
+  margin-top: 6rem;
+}
+
+.tit h2 {
+  font-size: 25px;
+  margin-left: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+  .tit h1 {
+    font-size: 40px; 
+  }
+
+  .tit h2 {
+    font-size: 20px; 
+    margin-left: 0;
+  }
+  nav {
+    width: 140px; 
+  }
+
+  nav ul li a {
+    font-size: 16px; 
+  }
+}

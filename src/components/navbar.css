@@ -1,0 +1,48 @@
+.navbar {
+  width: 100%;
+  height: 60px;
+  background-color: rgb(44, 44, 44);
+  display: flex;
+  opacity: 80%;
+  justify-content: space-between; 
+  align-items: center;
+  position: fixed; 
+  top: 0; 
+  z-index: 1000; 
+}
+
+.links {
+  margin-right: 50px;
+}
+
+.links a {
+  text-decoration: none;
+  color: rgb(211, 211, 211);
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+.links a:hover {
+  color: #fffdfd;
+}
+
+.brand {
+  font-size: 30px;
+  color: #fffdfd;
+  text-decoration: none;
+  margin-left: 10px;
+}
+.cartIcon{
+  size:25px;
+}
+@media only screen and (max-width: 600px) {
+  .brand {
+    font-size: 20px; 
+  }
+  .links a {
+    font-size: 12px; 
+  }
+  .cartIcon{
+    size:15px;
+  }
+}

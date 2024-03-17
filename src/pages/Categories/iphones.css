@@ -1,0 +1,105 @@
+.iphones-search-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .iphones-search-container input[type="text"] {
+    width: 1000px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .iphones-search-container button {
+    padding: 10px 20px;
+    background-color: #090909;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .iphones-form-container {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px; 
+    height: 8%;
+  }
+  .iphones-search-container button:hover {
+    background-color: #302f2f;
+  }
+  
+  .filter-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .filter-container form {
+    margin-right: 20px;
+  }
+  
+  .filter-container label {
+    margin-right: 5px;
+  }
+  
+  .filter-container input[type="text"] {
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .filter-container input[type="text"]:last-child {
+    margin-right: 0;
+  }
+  
+  .products {
+    margin-top: 20px;
+  }
+  
+  .product-slide {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+  .product-card {
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .product-card h3 {
+    margin-top: 0;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .product-card p {
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #888;
+    flex-grow: 1;
+  }
