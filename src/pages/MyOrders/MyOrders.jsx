@@ -50,7 +50,7 @@ const MyOrders = () => {
               <ul>
                 {order.items.map((item, index) => (
                   <li key={index}>
-                    <span>{item.name}</span> - <span>{item.quntity}</span> x <span className='items'>${item.price}</span>
+                    <span>{item.name}</span> - <span>{item.ordered}</span> x <span className='items'>${item.price}</span>
                   </li>
                 ))}
               </ul>
