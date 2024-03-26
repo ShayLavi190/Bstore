@@ -14,7 +14,8 @@ export const CartItem = (props) => {
   const handelAddToCart = () => {
     if((quntity-quantity)>=1){
       setQuantity(quantity+1)
-      addToCart(prod_id)
+      let askAmount = quantity+1;
+      addToCart(prod_id,askAmount)
     }
     else{
       alert("Product is out of stock in this quantity. Please remove it from cart.")
@@ -22,8 +23,8 @@ export const CartItem = (props) => {
   }
   // Function to decrease the quantity of the product item card
   const HandelRemoveFromCart = () => {
-      setQuantity(quantity-1)
-      removeFromCart(prod_id)
+    setQuantity(quantity-1)
+    removeFromCart(prod_id)
   }
   return (
     <div className="cartItem">
