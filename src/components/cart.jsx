@@ -17,9 +17,20 @@ export const Cart = () => {
 
   useEffect(() => {
     // Filter products that are in the cart
-    const purchasedProducts = products.filter((product) => {
-      return cartItems.hasOwnProperty(product.prod_id) && cartItems[product.prod_id] > 0;
-    });
+    const purchasedProducts = Object.keys(cartItems).map((productId) => {
+      const product = products.find((p) => p.prod_id === productId);
+      if (product) {
+        return {
+          ...product,
+          ordered: cartItems[productId] // Set the quantity directly from cartItems using the productId
+        };
+      } else {
+        return null; // Product not found in products array
+      }
+    }).filter((product) => product !== null);
+    
+    console.log(purchasedProducts);
+    
     setBuyprod(purchasedProducts);
     
     // Calculate subtotal
