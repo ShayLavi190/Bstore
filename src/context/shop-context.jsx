@@ -47,9 +47,7 @@ const fetchProducts = async () => {
 // Function to update the product in the database
   const updateProduct = async (prod_id, updatedProductData) => {
     try {
-      console.log(updatedProductData);
       const response = await axios.put(`http://localhost:6500/products/${prod_id}`, updatedProductData);
-      console.log(response.data);
       return response.data; 
     } catch (error) {
       console.error('Error updating product:', error);
@@ -64,7 +62,7 @@ const fetchProducts = async () => {
       console.error(`Product with ID ${itemId} not found.`);
       return;
     }
-    if (product.quntity-askAmount <= 0) {
+    if (product.quntity-askAmount < 0) {
       alert('Sorry, this product is out of stock.');
       return;
     }
@@ -76,24 +74,26 @@ const fetchProducts = async () => {
     if(product.quntity-1<=0){
       product.isInStock = false;
     }
-    updateProduct(itemId, { ...product, quntity: product.quntity - 1 ,isInStock:product.isInStock});
+    updateProduct(itemId, { ...product, quntity: product.quntity - askAmount ,isInStock:product.isInStock});
   
     alert("Item added to cart");
   };
   
 // Function to remove the product from the cart
-  const removeFromCart = (itemId) => {
-    const product = products.find((product) => product.prod_id === itemId);
-    setCartItems((prevCartItems) => {
-      const updatedCartItems = { ...prevCartItems };
-      updatedCartItems[itemId] = updatedCartItems[itemId] ? updatedCartItems[itemId] - 1 : 0;
-      return updatedCartItems;
-    });
-    if(product.quntity+1>0){
-      product.isInStock = true;
+const removeFromCart = (itemId) => {
+  const product = products.find((product) => product.prod_id === itemId);
+  setCartItems((prevCartItems) => {
+    const updatedCartItems = { ...prevCartItems };
+    if (updatedCartItems[itemId] && updatedCartItems[itemId] > 1) {
+      updatedCartItems[itemId] -= 1; // Decrease quantity by 1 if it's more than 0
+    } else {
+      delete updatedCartItems[itemId]; // Remove the item if quantity becomes 0 or less
     }
-    updateProduct(itemId, { ...product, quntity: product.quntity + 1,isInStock:product.isInStock });
-  };
+    return updatedCartItems;
+  });
+  // Update the quantity in the database
+  updateProduct(itemId, { ...product, quntity: product.quntity - 1 });
+};
 // Function to update the quantity of the product in the cart
   const updateCartItemCount = (newAmount, itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: newAmount }));
