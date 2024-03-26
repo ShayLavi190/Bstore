@@ -20,7 +20,7 @@ const Product = () => {
   const [link, setLink] = useState('');
   const [_id, set_id] = useState({});
   const { addToCart } = useContext(ShopContext); 
-  const [askAmount, setAskAmount] = useState(0);
+  const [askAmount, setAskAmount] = useState(1);
   const [quantity, setQuantity] = useState(0);
   
 
