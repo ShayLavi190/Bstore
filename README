@@ -1,0 +1,5 @@
+instractions for installing the projects
+1. install node.js and vscode
+2. enter the terminal and type npm i -f
+3. clear the terminal and type cd backend and after that type npm i -f
+4. change the ssl syntax on package.json if you using mac.
