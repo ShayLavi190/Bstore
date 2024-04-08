@@ -5,9 +5,11 @@ import { Container, Row, Col } from 'react-bootstrap';
 import "./product.css";
 import { useParams } from 'react-router-dom';
 import { ShopContext } from '../../context/shop-context';
+import { useNavigate } from "react-router-dom";
 // Product component
 const Product = () => {
   const { category, index } = useParams(); 
+  const {setCartItems } = useContext(ShopContext);
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [desc, setDescription] = useState('');
@@ -20,8 +22,10 @@ const Product = () => {
   const [link, setLink] = useState('');
   const [_id, set_id] = useState({});
   const { addToCart } = useContext(ShopContext); 
-  const [askAmount, setAskAmount] = useState(0);
+  const [askAmount, setAskAmount] = useState(1);
   const [quantity, setQuantity] = useState(0);
+  const navigate = useNavigate();
+
   
 
   useEffect(() => {
@@ -52,7 +56,8 @@ const Product = () => {
 // Function to add the product to the cart
   const handleAddToCart = () => {
     setAskAmount(askAmount + 1);
-    addToCart(prod_id,askAmount); // Call addToCart function from context
+    addToCart(prod_id,askAmount); 
+    // Call addToCart function from context
   };
   function getCookie(val) {
     const cookies = document.cookie.split('; ');
@@ -63,6 +68,23 @@ const Product = () => {
         }
     }
     return null;
+  }
+
+  const handelBuyNow = async () => {
+    if (!getCookie('email')) {
+      alert("Please login to buy the product.");
+      return;
+    }
+      const response = await axios.get(`http://localhost:6500/${category}/${index}`);
+      if(response.data.name == name && response.data.isInStock == false && response.data.quntity < 1)
+      {
+        alert(`Sorry,${name} is out of stock`);
+        return;
+      }
+      let buyprod = [{...response.data, ordered: 1}];
+      updateProduct(response.data.prod_id, { ...response.data, quntity: response.data.quntity - 1 })
+    setCartItems({});
+    navigate('/checkout', { state: { buyprod } });
   }
   // Function to update the product
   const updateProduct = async (prod_id, updatedProductData) => {
@@ -110,6 +132,7 @@ const Product = () => {
                 <div>
                 <p className='in-stock'>In Stock</p>
                 <button className='buttonadd' onClick={handleAddToCart}>Add to Cart</button>
+                <button className='buttonadd' onClick={handelBuyNow}>Buy now</button>
                 </div>
               ) : (
                 <div>

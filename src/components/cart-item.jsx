@@ -14,7 +14,7 @@ export const CartItem = (props) => {
   const handelAddToCart = () => {
     if((quntity-quantity)>=1){
       setQuantity(quantity+1)
-      addToCart(prod_id)
+      addToCart(prod_id,quantity)
     }
     else{
       alert("Product is out of stock in this quantity. Please remove it from cart.")

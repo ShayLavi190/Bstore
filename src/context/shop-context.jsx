@@ -63,7 +63,8 @@ const addToCart = (itemId, askAmount) => {
     console.error(`Product with ID ${itemId} not found.`);
     return;
   }
-  if (product.quntity - askAmount + 1 <= 0) {
+  console.log('p: ' + product.quntity + 'q: ' + askAmount);
+  if (product.quntity - askAmount  < 0) {
     alert('Sorry, this product is out of stock.');
     return;
   }
@@ -73,8 +74,8 @@ const addToCart = (itemId, askAmount) => {
     const updatedQuantity = updatedCartItems[itemId] ? updatedCartItems[itemId] + 1 : 1;
     updatedCartItems[itemId] = updatedQuantity;
     updateCartItemCount(updatedQuantity, itemId);
-
-    const updatedProduct = { ...product, quntity: product.quntity - 1 };
+    const updatedQ = product.quntity - 1;
+    const updatedProduct = { ...product, quntity: updatedQ };
     if (updatedProduct.quntity <= 0) {
       updatedProduct.isInStock = false;
     }
@@ -100,7 +101,8 @@ const addToCart = (itemId, askAmount) => {
     if(product.quntity+1>0){
       product.isInStock = true;
     }
-    updateProduct(itemId, { ...product, quntity: product.quntity + 1,isInStock:product.isInStock });
+    let updatedQuantity = product.quntity + 1;
+    updateProduct(itemId, { ...product, quntity: updatedQuantity,isInStock:product.isInStock });
   };
 // Function to update the quantity of the product in the cart
   const updateCartItemCount = (newAmount, itemId) => {

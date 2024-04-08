@@ -45,7 +45,6 @@ const MyOrders = () => {
           <div key={order._id} className="card">
             <div className="card-body">
               <h5 className="card-title">Order ID: {order.id}</h5>
-              <p className="card-text">Order Date: {order.date}</p>
               <h6>Items:</h6>
               <ul>
                 {order.items.map((item, index) => (

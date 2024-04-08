@@ -26,9 +26,9 @@ const Checkout = ({ buyprod }) => {
   const navigate = useNavigate();
   const [buyprodd, setBuyprodd] = useState([]);
   const location = useLocation();
-  const [cartItems] = useState([]);
   useEffect(() => {
     if (location.state && location.state.buyprod) {
+      console.log('Products in cart:', location.state.buyprod)
       setBuyprodd(location.state.buyprod);
     }
     if (!buyprodd) {
