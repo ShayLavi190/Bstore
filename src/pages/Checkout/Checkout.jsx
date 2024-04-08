@@ -26,6 +26,7 @@ const Checkout = ({ buyprod }) => {
   const navigate = useNavigate();
   const [buyprodd, setBuyprodd] = useState([]);
   const location = useLocation();
+  const [cartItems] = useState([]);
   useEffect(() => {
     if (location.state && location.state.buyprod) {
       setBuyprodd(location.state.buyprod);
@@ -152,14 +153,12 @@ const Checkout = ({ buyprod }) => {
         );
         try {
           for (const item of buyprodd) {
-            const updatedQuantity = item.quantity-1;
             const response = await axios.put(`http://localhost:6500/products/${item.prod_id}`, {
-              quantity: updatedQuantity,
-              isInStock: updatedQuantity > 0 
+              isInStock: item.quntity-cartItems[item.prod_id] > 0 
             });
       
             if (response.status === 200) {
-              console.log(`Product ${item.productId} updated successfully.`);
+              console.log(`Product ${item.prod_id} updated successfully.`);
             } else {
               console.error('Failed to update product:', response.data.message);
             }

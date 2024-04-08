@@ -35,7 +35,6 @@ const fetchProducts = async () => {
                   }
               }
               product.notify = [];
-              console.log("Product updated:", product);
               updateProduct(product.prod_id,product);
           }
       }
@@ -70,12 +69,21 @@ const fetchProducts = async () => {
     }
     setCartItems((prevCartItems) => {
       const updatedCartItems = { ...prevCartItems };
-      updatedCartItems[itemId] = updatedCartItems[itemId] ? updatedCartItems[itemId] + 1 : 1;
+      if(updatedCartItems[itemId]){
+      updatedCartItems[itemId] =  updatedCartItems[itemId] + 1;
+      updateCartItemCount(updatedCartItems[itemId],itemId);
+      }
+      else{
+        updatedCartItems[itemId] = 1;
+        updateCartItemCount(1,itemId);
+
+      }
       return updatedCartItems;
     });
     if(product.quntity-1<=0){
       product.isInStock = false;
     }
+    console.log(cartItems);
     updateProduct(itemId, { ...product, quntity: product.quntity - 1 ,isInStock:product.isInStock});
   
     alert("Item added to cart");
@@ -87,6 +95,7 @@ const fetchProducts = async () => {
     setCartItems((prevCartItems) => {
       const updatedCartItems = { ...prevCartItems };
       updatedCartItems[itemId] = updatedCartItems[itemId] ? updatedCartItems[itemId] - 1 : 0;
+      updateCartItemCount(updatedCartItems[itemId],itemId);
       return updatedCartItems;
     });
     if(product.quntity+1>0){
@@ -97,12 +106,16 @@ const fetchProducts = async () => {
 // Function to update the quantity of the product in the cart
   const updateCartItemCount = (newAmount, itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: newAmount }));
+    console.log(itemId + ' , ' + newAmount)
+    console.log(cartItems);
   };
 // Function to checkout the cart
   const checkout = () => {
+    for (const product of cartItems) {
+      updateProduct (product.prod_id, { ...product, quntity: product.quntity - product.value });
+    };
     setCartItems({});
-  };
-
+  }
   const contextValue = {
     cartItems,
     addToCart,

@@ -60,6 +60,9 @@ function Login(props) {
   const handleForgotPass = () => {
     navigate("/forgotpassword", { replace: true });
   }
+  const handelGuest = () => {
+    navigate("/shop", { replace: true });
+  }
   return (
     <div className="form-container sign-in-container">
       <form onSubmit={handleSubmit}>
@@ -81,6 +84,7 @@ function Login(props) {
         <button>Sign In</button>
         <h1 style={{marginTop:'50px'}}> forgot your password ?</h1>
         <button onClick={handleForgotPass}>click here</button>
+        <button style={{marginTop:'50px'}}onClick={handelGuest}>continue as guest</button>
       </form>
       {message && <p>{message}</p>}
     </div>

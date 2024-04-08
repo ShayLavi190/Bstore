@@ -21,7 +21,6 @@ export const Cart = () => {
       return cartItems.hasOwnProperty(product.prod_id) && cartItems[product.prod_id] > 0;
     });
     setBuyprod(purchasedProducts);
-    
     // Calculate subtotal
     let total = 0;
     purchasedProducts.forEach((product) => {
@@ -60,7 +59,8 @@ export const Cart = () => {
         </div>
         <div className="cart">
           {buyprod.map((product) => (
-            <CartItem data={product} quantity={1} key={product.prod_id} />
+            console.log(cartItems[product.prod_id]),
+            <CartItem data={product} quantity={cartItems[product.prod_id]} key={product.prod_id} />
           ))}
         </div>
         {buyprod.length > 0 ? (

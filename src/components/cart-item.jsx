@@ -5,7 +5,7 @@ import { ShopContext } from "../context/shop-context";
 export const CartItem = (props) => {
   const { prod_id, name, price, image, quntity } = props.data;
   const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(cartItems[prod_id]);
   // Delete the product item card from the page when quantity is zero
   if (quntity === 0) {
     return null;
