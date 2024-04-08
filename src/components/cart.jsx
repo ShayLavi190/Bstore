@@ -9,7 +9,7 @@ import axios from "axios";
 
 // Cart component to display the cart page
 export const Cart = () => {
-  const { cartItems, products } = useContext(ShopContext);
+  const { cartItems, products,setCartItems } = useContext(ShopContext);
   const [buyprod, setBuyprod] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
   const navigate = useNavigate();
@@ -20,7 +20,11 @@ export const Cart = () => {
     const purchasedProducts = products.filter((product) => {
       return cartItems.hasOwnProperty(product.prod_id) && cartItems[product.prod_id] > 0;
     });
-    setBuyprod(purchasedProducts);
+    const updatedProducts = purchasedProducts.map(product => ({
+      ...product,
+      ordered: cartItems[product.prod_id]
+    }));
+    setBuyprod(updatedProducts);
     // Calculate subtotal
     let total = 0;
     purchasedProducts.forEach((product) => {
@@ -46,6 +50,8 @@ export const Cart = () => {
           return;
         }
       }
+      setSubtotal(0);
+      setCartItems({});
       navigate('/checkout', { state: { buyprod } });
     }
   };
@@ -59,7 +65,6 @@ export const Cart = () => {
         </div>
         <div className="cart">
           {buyprod.map((product) => (
-            console.log(cartItems[product.prod_id]),
             <CartItem data={product} quantity={cartItems[product.prod_id]} key={product.prod_id} />
           ))}
         </div>

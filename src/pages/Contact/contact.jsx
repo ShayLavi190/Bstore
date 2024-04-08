@@ -11,10 +11,10 @@ export const Contact = () => {
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
 
-  useEffect(() => emailjs.init("vkSKnBe1Iyast1H6B"), [])
+  useEffect(() => emailjs.init("bVId8LXlgw6L9ZnIt"), [])
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const serviceId = "bstorecontact2";
+    const serviceId = "bstorecontact";
     const templateId = "template_n389dr4";
     try {
       await emailjs.send(serviceId, templateId, {

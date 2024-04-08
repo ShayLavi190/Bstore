@@ -57,37 +57,36 @@ const fetchProducts = async () => {
   };
 
 // Function to add the product to the cart
-  const addToCart = (itemId,askAmount) => {
-    const product = products.find((product) => product.prod_id === itemId);
-    if (!product) {
-      console.error(`Product with ID ${itemId} not found.`);
-      return;
-    }
-    if (product.quntity-askAmount <= 0) {
-      alert('Sorry, this product is out of stock.');
-      return;
-    }
-    setCartItems((prevCartItems) => {
-      const updatedCartItems = { ...prevCartItems };
-      if(updatedCartItems[itemId]){
-      updatedCartItems[itemId] =  updatedCartItems[itemId] + 1;
-      updateCartItemCount(updatedCartItems[itemId],itemId);
-      }
-      else{
-        updatedCartItems[itemId] = 1;
-        updateCartItemCount(1,itemId);
+const addToCart = (itemId, askAmount) => {
+  const product = products.find((product) => product.prod_id === itemId);
+  if (!product) {
+    console.error(`Product with ID ${itemId} not found.`);
+    return;
+  }
+  if (product.quntity - askAmount + 1 <= 0) {
+    alert('Sorry, this product is out of stock.');
+    return;
+  }
 
-      }
-      return updatedCartItems;
-    });
-    if(product.quntity-1<=0){
-      product.isInStock = false;
+  setCartItems((prevCartItems) => {
+    const updatedCartItems = { ...prevCartItems };
+    const updatedQuantity = updatedCartItems[itemId] ? updatedCartItems[itemId] + 1 : 1;
+    updatedCartItems[itemId] = updatedQuantity;
+    updateCartItemCount(updatedQuantity, itemId);
+
+    const updatedProduct = { ...product, quntity: product.quntity - 1 };
+    if (updatedProduct.quntity <= 0) {
+      updatedProduct.isInStock = false;
     }
-    console.log(cartItems);
-    updateProduct(itemId, { ...product, quntity: product.quntity - 1 ,isInStock:product.isInStock});
-  
-    alert("Item added to cart");
-  };
+    console.log(updatedProduct);  
+    updateProduct(itemId, updatedProduct);
+
+    return updatedCartItems;
+  });
+
+  alert("Item added to cart");
+};
+
   
 // Function to remove the product from the cart
   const removeFromCart = (itemId) => {
@@ -122,6 +121,7 @@ const fetchProducts = async () => {
     updateCartItemCount,
     removeFromCart,
     checkout,
+    setCartItems,
     products,
   };
 

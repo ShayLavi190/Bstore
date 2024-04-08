@@ -142,7 +142,7 @@ const Checkout = ({ buyprod }) => {
           id: id,
           email: email,
         };
-        emailjs.init("vkSKnBe1Iyast1H6B");
+        emailjs.init("bVId8LXlgw6L9ZnIt");
         emailjs.send('order_conformation', 'order_c', templateParams).then(
           (response) => {
             console.log('SUCCESS!', response.status, response.text);
@@ -154,7 +154,7 @@ const Checkout = ({ buyprod }) => {
         try {
           for (const item of buyprodd) {
             const response = await axios.put(`http://localhost:6500/products/${item.prod_id}`, {
-              isInStock: item.quntity-cartItems[item.prod_id] > 0 
+              isInStock: (item.quntity-item.ordered) > 0 
             });
       
             if (response.status === 200) {

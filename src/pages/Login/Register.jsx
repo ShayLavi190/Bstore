@@ -38,7 +38,10 @@ function Register() {
     if(!passwordContainsSymbols(state.password)) return alert("Password must contain at least one symbol.")
     if((state.number < 0) || (state.apt < 0)) return alert("Apartment number and street number must be positive numbers.")
     if(!passwordContainsnNumbers(state.password)) return alert("Password must contain numbers.")
-    try{const user = await axios.get(`http://localhost:6500/${state.email}`);}
+    try{const user = await axios.get(`http://localhost:6500/${state.email}`);
+    if(user) return alert("User already exists, please log in.")
+    return;
+  }
     catch (error) {
       console.error("Error:", error);
     }
