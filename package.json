@@ -23,7 +23,7 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd backend && node server.js",
-    "client": "HTTPS=true SSL_CRT_FILE=/Users/shaylavi/cert.pem SSL_KEY_FILE=/Users/shaylavi/key.pem react-scripts start",
+    "client": "set HTTPS=true && set SSL_CRT_FILE=cert.pem && set SSL_KEY_FILE=key.pem && react-scripts start",
     "test": "react-scripts test"
   },
   "eslintConfig": {
