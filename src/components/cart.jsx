@@ -76,7 +76,20 @@ export const Cart = () => {
               <button className="checkout-button" onClick={handleCheckout}>Checkout</button>
             </div>
             <PayPalScriptProvider options={{ clientId: "AUw64R1RHWdRKv_e7P92hTsbT9gA8L5HZVFjhG-qM0jUhpYqFmj3B2XImLaftht90qgxQTZFzRH1rXML" }}>
-            <PayPalButtons style={{ layout: "horizontal"}} />
+              <PayPalButtons
+                createOrder={(data, actions) => {
+                  return actions.order.create({
+                    purchase_units: [
+                      {
+                        amount: {
+                          value: subtotal.toString(),
+                        },
+                      },
+                    ],
+                  });
+                }}
+                style={{ layout: "horizontal"}}
+              />
             </PayPalScriptProvider>
           </div>
         ) : (
