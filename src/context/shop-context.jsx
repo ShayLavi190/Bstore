@@ -101,8 +101,7 @@ const addToCart = (itemId, askAmount) => {
     if(product.quntity+1>0){
       product.isInStock = true;
     }
-    let updatedQuantity = product.quntity + 1;
-    updateProduct(itemId, { ...product, quntity: updatedQuantity,isInStock:product.isInStock });
+    updateProduct(itemId, { ...product,isInStock:product.isInStock });
   };
 // Function to update the quantity of the product in the cart
   const updateCartItemCount = (newAmount, itemId) => {
