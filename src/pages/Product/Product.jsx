@@ -71,10 +71,6 @@ const Product = () => {
   }
 
   const handelBuyNow = async () => {
-    if (!getCookie('email')) {
-      alert("Please login to buy the product.");
-      return;
-    }
       const response = await axios.get(`http://localhost:6500/${category}/${index}`);
       if(response.data.name == name && response.data.isInStock == false && response.data.quntity < 1)
       {
@@ -82,6 +78,10 @@ const Product = () => {
         return;
       }
       let buyprod = [{...response.data, ordered: 1}];
+      if(response.data.quntity-1 <= 0)
+      {
+        response.data.isInStock = false;
+      }
       updateProduct(response.data.prod_id, { ...response.data, quntity: response.data.quntity - 1 })
     setCartItems({});
     navigate('/checkout', { state: { buyprod } });
